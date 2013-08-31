@@ -1,32 +1,33 @@
 {
-  "name": "unagi",
-  "version": "0.0.0",
-  "description": "A collection of basic JavaScript utility functions intended for Node.js (V8). It is best optimized for performance with NO cross-browser compatibility checks.",
-  "main": "index.js",
-  "scripts": {
-    "test": "mocha"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/joonho1101/unagi.git"
-  },
-  "keywords": [
+	"name": "unagi",
+	"version": "0.1.0",
+	"description": "A collection of basic JavaScript utility functions intended for Node.js (V8). It is best optimized for performance with NO cross-browser compatibility checks.",
+	"main": "index.js",
+	"scripts": {
+		"test": "mocha"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/joonho1101/unagi.git"
+	},
+	"keywords": [
     "javascript",
     "js",
     "node",
     "nodejs",
     "node.js",
+    "util",
     "utility",
     "fast",
     "performance"
-  ],
-  "author": {
-    "name": "Joon Ho Cho",
-    "email": "joonho1101@gmail.com",
-    "url": "https://github.com/joonho1101"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/joonho1101/unagi/issues"
-  }
+	],
+	"author": {
+		"name": "Joon Ho Cho",
+		"email": "joonho1101@gmail.com",
+		"url": "https://github.com/joonho1101"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/joonho1101/unagi/issues"
+	}
 }
