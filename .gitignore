@@ -1,1 +1,9 @@
+.*.swp
+._*
 .DS_Store
+.hg
+.lock-wscript
+.svn
+.wafpickle-*
+CVS
+npm-debug.log
