@@ -149,6 +149,14 @@
 			},
 			lcfirst: function ucfirst(str) {
 				return str && str.charAt(0).toLowerCase() + str.substring(1);
+			},
+			startsWith: function startsWith(str, prefix) {
+				return str.lastIndexOf(prefix, 0) === 0;
+			},
+			endsWith: function (str, suffix) {
+				var strLen = str.length,
+					suffixLen = suffix.length;
+				return strLen >= suffixLen && str.indexOf(suffix, strLen - suffixLen) !== -1;
 			}
 		},
 		// Object Utility Functions
