@@ -471,14 +471,38 @@
 				is.emptyObj(false).should.equal(false);
 				is.emptyObj('').should.equal(false);
 				is.emptyObj('str').should.equal(false);
-				is.emptyObj(/regexp/).should.equal(false);
-				is.emptyObj(new Date()).should.equal(false);
+				is.emptyObj(/regexp/).should.equal(true);
+				is.emptyObj(new Date()).should.equal(true);
 				is.emptyObj(function () {}).should.equal(false);
 				is.emptyObj(Object).should.equal(false);
-				is.emptyObj([]).should.equal(false);
+				is.emptyObj([]).should.equal(true);
 				is.emptyObj([1]).should.equal(false);
 				is.emptyObj({}).should.equal(true);
 				is.emptyObj({
+					a: 1
+				}).should.equal(false);
+			});
+		});
+
+		describe('#emptyJson', function () {
+			it('should return true only when the value is a JSON object and is empty', function () {
+				is.emptyJson(void 0).should.equal(false);
+				is.emptyJson(null).should.equal(false);
+				is.emptyJson(NaN).should.equal(false);
+				is.emptyJson(0).should.equal(false);
+				is.emptyJson(1).should.equal(false);
+				is.emptyJson(true).should.equal(false);
+				is.emptyJson(false).should.equal(false);
+				is.emptyJson('').should.equal(false);
+				is.emptyJson('str').should.equal(false);
+				is.emptyJson(/regexp/).should.equal(false);
+				is.emptyJson(new Date()).should.equal(false);
+				is.emptyJson(function () {}).should.equal(false);
+				is.emptyJson(Object).should.equal(false);
+				is.emptyJson([]).should.equal(false);
+				is.emptyJson([1]).should.equal(false);
+				is.emptyJson({}).should.equal(true);
+				is.emptyJson({
 					a: 1
 				}).should.equal(false);
 			});
