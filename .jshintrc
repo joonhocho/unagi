@@ -83,5 +83,8 @@
 	"white": true,
 
 	// Globals
-	"globals": {}
+	"globals": {
+		"describe": true,
+		"it": true
+	}
 }
