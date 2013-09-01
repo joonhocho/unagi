@@ -1,628 +1,628 @@
 (function () {
 	'use strict';
 
-	var unagi = require('../../lib/index.js');
+	var is = require('../../lib/index.js').is;
 
 	describe('is', function () {
-		describe('#isArray', function () {
+		describe('#arr', function () {
 			it('should return true only when the value is array', function () {
-				unagi.isArray(void 0).should.equal(false);
-				unagi.isArray(null).should.equal(false);
-				unagi.isArray(NaN).should.equal(false);
-				unagi.isArray(0).should.equal(false);
-				unagi.isArray(1).should.equal(false);
-				unagi.isArray(true).should.equal(false);
-				unagi.isArray(false).should.equal(false);
-				unagi.isArray('').should.equal(false);
-				unagi.isArray('str').should.equal(false);
-				unagi.isArray(/regexp/).should.equal(false);
-				unagi.isArray(new Date()).should.equal(false);
-				unagi.isArray(function () {}).should.equal(false);
-				unagi.isArray(Object).should.equal(false);
-				unagi.isArray([]).should.equal(true);
-				unagi.isArray([1]).should.equal(true);
-				unagi.isArray({}).should.equal(false);
-				unagi.isArray({
+				is.arr(void 0).should.equal(false);
+				is.arr(null).should.equal(false);
+				is.arr(NaN).should.equal(false);
+				is.arr(0).should.equal(false);
+				is.arr(1).should.equal(false);
+				is.arr(true).should.equal(false);
+				is.arr(false).should.equal(false);
+				is.arr('').should.equal(false);
+				is.arr('str').should.equal(false);
+				is.arr(/regexp/).should.equal(false);
+				is.arr(new Date()).should.equal(false);
+				is.arr(function () {}).should.equal(false);
+				is.arr(Object).should.equal(false);
+				is.arr([]).should.equal(true);
+				is.arr([1]).should.equal(true);
+				is.arr({}).should.equal(false);
+				is.arr({
 					a: 1
 				}).should.equal(false);
 			});
 		});
 
-		describe('#isNotArray', function () {
+		describe('#nArr', function () {
 			it('should return false only when the value is array', function () {
-				unagi.isNotArray(void 0).should.equal(true);
-				unagi.isNotArray(null).should.equal(true);
-				unagi.isNotArray(NaN).should.equal(true);
-				unagi.isNotArray(0).should.equal(true);
-				unagi.isNotArray(1).should.equal(true);
-				unagi.isNotArray(true).should.equal(true);
-				unagi.isNotArray(false).should.equal(true);
-				unagi.isNotArray('').should.equal(true);
-				unagi.isNotArray('str').should.equal(true);
-				unagi.isNotArray(/regexp/).should.equal(true);
-				unagi.isNotArray(new Date()).should.equal(true);
-				unagi.isNotArray(function () {}).should.equal(true);
-				unagi.isNotArray(Object).should.equal(true);
-				unagi.isNotArray([]).should.equal(false);
-				unagi.isNotArray([1]).should.equal(false);
-				unagi.isNotArray({}).should.equal(true);
-				unagi.isNotArray({
+				is.nArr(void 0).should.equal(true);
+				is.nArr(null).should.equal(true);
+				is.nArr(NaN).should.equal(true);
+				is.nArr(0).should.equal(true);
+				is.nArr(1).should.equal(true);
+				is.nArr(true).should.equal(true);
+				is.nArr(false).should.equal(true);
+				is.nArr('').should.equal(true);
+				is.nArr('str').should.equal(true);
+				is.nArr(/regexp/).should.equal(true);
+				is.nArr(new Date()).should.equal(true);
+				is.nArr(function () {}).should.equal(true);
+				is.nArr(Object).should.equal(true);
+				is.nArr([]).should.equal(false);
+				is.nArr([1]).should.equal(false);
+				is.nArr({}).should.equal(true);
+				is.nArr({
 					a: 1
 				}).should.equal(true);
 			});
 		});
 
-		describe('#isBoolean', function () {
+		describe('#bool', function () {
 			it('should return true only when the value is boolean', function () {
-				unagi.isBoolean(void 0).should.equal(false);
-				unagi.isBoolean(null).should.equal(false);
-				unagi.isBoolean(NaN).should.equal(false);
-				unagi.isBoolean(0).should.equal(false);
-				unagi.isBoolean(1).should.equal(false);
-				unagi.isBoolean(true).should.equal(true);
-				unagi.isBoolean(false).should.equal(true);
-				unagi.isBoolean('').should.equal(false);
-				unagi.isBoolean('str').should.equal(false);
-				unagi.isBoolean(/regexp/).should.equal(false);
-				unagi.isBoolean(new Date()).should.equal(false);
-				unagi.isBoolean(function () {}).should.equal(false);
-				unagi.isBoolean(Object).should.equal(false);
-				unagi.isBoolean([]).should.equal(false);
-				unagi.isBoolean([1]).should.equal(false);
-				unagi.isBoolean({}).should.equal(false);
-				unagi.isBoolean({
+				is.bool(void 0).should.equal(false);
+				is.bool(null).should.equal(false);
+				is.bool(NaN).should.equal(false);
+				is.bool(0).should.equal(false);
+				is.bool(1).should.equal(false);
+				is.bool(true).should.equal(true);
+				is.bool(false).should.equal(true);
+				is.bool('').should.equal(false);
+				is.bool('str').should.equal(false);
+				is.bool(/regexp/).should.equal(false);
+				is.bool(new Date()).should.equal(false);
+				is.bool(function () {}).should.equal(false);
+				is.bool(Object).should.equal(false);
+				is.bool([]).should.equal(false);
+				is.bool([1]).should.equal(false);
+				is.bool({}).should.equal(false);
+				is.bool({
 					a: 1
 				}).should.equal(false);
 			});
 		});
 
-		describe('#isNotBoolean', function () {
+		describe('#nBool', function () {
 			it('should return false only when the value is boolean', function () {
-				unagi.isNotBoolean(void 0).should.equal(true);
-				unagi.isNotBoolean(null).should.equal(true);
-				unagi.isNotBoolean(NaN).should.equal(true);
-				unagi.isNotBoolean(0).should.equal(true);
-				unagi.isNotBoolean(1).should.equal(true);
-				unagi.isNotBoolean(true).should.equal(false);
-				unagi.isNotBoolean(false).should.equal(false);
-				unagi.isNotBoolean('').should.equal(true);
-				unagi.isNotBoolean('str').should.equal(true);
-				unagi.isNotBoolean(/regexp/).should.equal(true);
-				unagi.isNotBoolean(new Date()).should.equal(true);
-				unagi.isNotBoolean(function () {}).should.equal(true);
-				unagi.isNotBoolean(Object).should.equal(true);
-				unagi.isNotBoolean([]).should.equal(true);
-				unagi.isNotBoolean([1]).should.equal(true);
-				unagi.isNotBoolean({}).should.equal(true);
-				unagi.isNotBoolean({
+				is.nBool(void 0).should.equal(true);
+				is.nBool(null).should.equal(true);
+				is.nBool(NaN).should.equal(true);
+				is.nBool(0).should.equal(true);
+				is.nBool(1).should.equal(true);
+				is.nBool(true).should.equal(false);
+				is.nBool(false).should.equal(false);
+				is.nBool('').should.equal(true);
+				is.nBool('str').should.equal(true);
+				is.nBool(/regexp/).should.equal(true);
+				is.nBool(new Date()).should.equal(true);
+				is.nBool(function () {}).should.equal(true);
+				is.nBool(Object).should.equal(true);
+				is.nBool([]).should.equal(true);
+				is.nBool([1]).should.equal(true);
+				is.nBool({}).should.equal(true);
+				is.nBool({
 					a: 1
 				}).should.equal(true);
 			});
 		});
 
-		describe('#isNumber', function () {
+		describe('#num', function () {
 			it('should return true only when the value is number', function () {
-				unagi.isNumber(void 0).should.equal(false);
-				unagi.isNumber(null).should.equal(false);
-				unagi.isNumber(NaN).should.equal(true);
-				unagi.isNumber(0).should.equal(true);
-				unagi.isNumber(1).should.equal(true);
-				unagi.isNumber(true).should.equal(false);
-				unagi.isNumber(false).should.equal(false);
-				unagi.isNumber('').should.equal(false);
-				unagi.isNumber('str').should.equal(false);
-				unagi.isNumber(/regexp/).should.equal(false);
-				unagi.isNumber(new Date()).should.equal(false);
-				unagi.isNumber(function () {}).should.equal(false);
-				unagi.isNumber(Object).should.equal(false);
-				unagi.isNumber([]).should.equal(false);
-				unagi.isNumber([1]).should.equal(false);
-				unagi.isNumber({}).should.equal(false);
-				unagi.isNumber({
+				is.num(void 0).should.equal(false);
+				is.num(null).should.equal(false);
+				is.num(NaN).should.equal(true);
+				is.num(0).should.equal(true);
+				is.num(1).should.equal(true);
+				is.num(true).should.equal(false);
+				is.num(false).should.equal(false);
+				is.num('').should.equal(false);
+				is.num('str').should.equal(false);
+				is.num(/regexp/).should.equal(false);
+				is.num(new Date()).should.equal(false);
+				is.num(function () {}).should.equal(false);
+				is.num(Object).should.equal(false);
+				is.num([]).should.equal(false);
+				is.num([1]).should.equal(false);
+				is.num({}).should.equal(false);
+				is.num({
 					a: 1
 				}).should.equal(false);
 			});
 		});
 
-		describe('#isNotNumber', function () {
+		describe('#nNum', function () {
 			it('should return false only when the value is number', function () {
-				unagi.isNotNumber(void 0).should.equal(true);
-				unagi.isNotNumber(null).should.equal(true);
-				unagi.isNotNumber(NaN).should.equal(false);
-				unagi.isNotNumber(0).should.equal(false);
-				unagi.isNotNumber(1).should.equal(false);
-				unagi.isNotNumber(true).should.equal(true);
-				unagi.isNotNumber(false).should.equal(true);
-				unagi.isNotNumber('').should.equal(true);
-				unagi.isNotNumber('str').should.equal(true);
-				unagi.isNotNumber(/regexp/).should.equal(true);
-				unagi.isNotNumber(new Date()).should.equal(true);
-				unagi.isNotNumber(function () {}).should.equal(true);
-				unagi.isNotNumber(Object).should.equal(true);
-				unagi.isNotNumber([]).should.equal(true);
-				unagi.isNotNumber([1]).should.equal(true);
-				unagi.isNotNumber({}).should.equal(true);
-				unagi.isNotNumber({
+				is.nNum(void 0).should.equal(true);
+				is.nNum(null).should.equal(true);
+				is.nNum(NaN).should.equal(false);
+				is.nNum(0).should.equal(false);
+				is.nNum(1).should.equal(false);
+				is.nNum(true).should.equal(true);
+				is.nNum(false).should.equal(true);
+				is.nNum('').should.equal(true);
+				is.nNum('str').should.equal(true);
+				is.nNum(/regexp/).should.equal(true);
+				is.nNum(new Date()).should.equal(true);
+				is.nNum(function () {}).should.equal(true);
+				is.nNum(Object).should.equal(true);
+				is.nNum([]).should.equal(true);
+				is.nNum([1]).should.equal(true);
+				is.nNum({}).should.equal(true);
+				is.nNum({
 					a: 1
 				}).should.equal(true);
 			});
 		});
 
-		describe('#isString', function () {
+		describe('#str', function () {
 			it('should return true only when the value is string', function () {
-				unagi.isString(void 0).should.equal(false);
-				unagi.isString(null).should.equal(false);
-				unagi.isString(NaN).should.equal(false);
-				unagi.isString(0).should.equal(false);
-				unagi.isString(1).should.equal(false);
-				unagi.isString(true).should.equal(false);
-				unagi.isString(false).should.equal(false);
-				unagi.isString('').should.equal(true);
-				unagi.isString('str').should.equal(true);
-				unagi.isString(/regexp/).should.equal(false);
-				unagi.isString(new Date()).should.equal(false);
-				unagi.isString(function () {}).should.equal(false);
-				unagi.isString(Object).should.equal(false);
-				unagi.isString([]).should.equal(false);
-				unagi.isString([1]).should.equal(false);
-				unagi.isString({}).should.equal(false);
-				unagi.isString({
+				is.str(void 0).should.equal(false);
+				is.str(null).should.equal(false);
+				is.str(NaN).should.equal(false);
+				is.str(0).should.equal(false);
+				is.str(1).should.equal(false);
+				is.str(true).should.equal(false);
+				is.str(false).should.equal(false);
+				is.str('').should.equal(true);
+				is.str('str').should.equal(true);
+				is.str(/regexp/).should.equal(false);
+				is.str(new Date()).should.equal(false);
+				is.str(function () {}).should.equal(false);
+				is.str(Object).should.equal(false);
+				is.str([]).should.equal(false);
+				is.str([1]).should.equal(false);
+				is.str({}).should.equal(false);
+				is.str({
 					a: 1
 				}).should.equal(false);
 			});
 		});
 
-		describe('#isNotString', function () {
+		describe('#nStr', function () {
 			it('should return false only when the value is string', function () {
-				unagi.isNotString(void 0).should.equal(true);
-				unagi.isNotString(null).should.equal(true);
-				unagi.isNotString(NaN).should.equal(true);
-				unagi.isNotString(0).should.equal(true);
-				unagi.isNotString(1).should.equal(true);
-				unagi.isNotString(true).should.equal(true);
-				unagi.isNotString(false).should.equal(true);
-				unagi.isNotString('').should.equal(false);
-				unagi.isNotString('str').should.equal(false);
-				unagi.isNotString(/regexp/).should.equal(true);
-				unagi.isNotString(new Date()).should.equal(true);
-				unagi.isNotString(function () {}).should.equal(true);
-				unagi.isNotString(Object).should.equal(true);
-				unagi.isNotString([]).should.equal(true);
-				unagi.isNotString([1]).should.equal(true);
-				unagi.isNotString({}).should.equal(true);
-				unagi.isNotString({
+				is.nStr(void 0).should.equal(true);
+				is.nStr(null).should.equal(true);
+				is.nStr(NaN).should.equal(true);
+				is.nStr(0).should.equal(true);
+				is.nStr(1).should.equal(true);
+				is.nStr(true).should.equal(true);
+				is.nStr(false).should.equal(true);
+				is.nStr('').should.equal(false);
+				is.nStr('str').should.equal(false);
+				is.nStr(/regexp/).should.equal(true);
+				is.nStr(new Date()).should.equal(true);
+				is.nStr(function () {}).should.equal(true);
+				is.nStr(Object).should.equal(true);
+				is.nStr([]).should.equal(true);
+				is.nStr([1]).should.equal(true);
+				is.nStr({}).should.equal(true);
+				is.nStr({
 					a: 1
 				}).should.equal(true);
 			});
 		});
 
-		describe('#isFunction', function () {
+		describe('#fn', function () {
 			it('should return true only when the value is function', function () {
-				unagi.isFunction(void 0).should.equal(false);
-				unagi.isFunction(null).should.equal(false);
-				unagi.isFunction(NaN).should.equal(false);
-				unagi.isFunction(0).should.equal(false);
-				unagi.isFunction(1).should.equal(false);
-				unagi.isFunction(true).should.equal(false);
-				unagi.isFunction(false).should.equal(false);
-				unagi.isFunction('').should.equal(false);
-				unagi.isFunction('str').should.equal(false);
-				unagi.isFunction(/regexp/).should.equal(false);
-				unagi.isFunction(new Date()).should.equal(false);
-				unagi.isFunction(function () {}).should.equal(true);
-				unagi.isFunction(Object).should.equal(true);
-				unagi.isFunction([]).should.equal(false);
-				unagi.isFunction([1]).should.equal(false);
-				unagi.isFunction({}).should.equal(false);
-				unagi.isFunction({
+				is.fn(void 0).should.equal(false);
+				is.fn(null).should.equal(false);
+				is.fn(NaN).should.equal(false);
+				is.fn(0).should.equal(false);
+				is.fn(1).should.equal(false);
+				is.fn(true).should.equal(false);
+				is.fn(false).should.equal(false);
+				is.fn('').should.equal(false);
+				is.fn('str').should.equal(false);
+				is.fn(/regexp/).should.equal(false);
+				is.fn(new Date()).should.equal(false);
+				is.fn(function () {}).should.equal(true);
+				is.fn(Object).should.equal(true);
+				is.fn([]).should.equal(false);
+				is.fn([1]).should.equal(false);
+				is.fn({}).should.equal(false);
+				is.fn({
 					a: 1
 				}).should.equal(false);
 			});
 		});
 
-		describe('#isNotFunction', function () {
+		describe('#nFn', function () {
 			it('should return false only when the value is function', function () {
-				unagi.isNotFunction(void 0).should.equal(true);
-				unagi.isNotFunction(null).should.equal(true);
-				unagi.isNotFunction(NaN).should.equal(true);
-				unagi.isNotFunction(0).should.equal(true);
-				unagi.isNotFunction(1).should.equal(true);
-				unagi.isNotFunction(true).should.equal(true);
-				unagi.isNotFunction(false).should.equal(true);
-				unagi.isNotFunction('').should.equal(true);
-				unagi.isNotFunction('str').should.equal(true);
-				unagi.isNotFunction(/regexp/).should.equal(true);
-				unagi.isNotFunction(new Date()).should.equal(true);
-				unagi.isNotFunction(function () {}).should.equal(false);
-				unagi.isNotFunction(Object).should.equal(false);
-				unagi.isNotFunction([]).should.equal(true);
-				unagi.isNotFunction([1]).should.equal(true);
-				unagi.isNotFunction({}).should.equal(true);
-				unagi.isNotFunction({
+				is.nFn(void 0).should.equal(true);
+				is.nFn(null).should.equal(true);
+				is.nFn(NaN).should.equal(true);
+				is.nFn(0).should.equal(true);
+				is.nFn(1).should.equal(true);
+				is.nFn(true).should.equal(true);
+				is.nFn(false).should.equal(true);
+				is.nFn('').should.equal(true);
+				is.nFn('str').should.equal(true);
+				is.nFn(/regexp/).should.equal(true);
+				is.nFn(new Date()).should.equal(true);
+				is.nFn(function () {}).should.equal(false);
+				is.nFn(Object).should.equal(false);
+				is.nFn([]).should.equal(true);
+				is.nFn([1]).should.equal(true);
+				is.nFn({}).should.equal(true);
+				is.nFn({
 					a: 1
 				}).should.equal(true);
 			});
 		});
 
-		describe('#isObject', function () {
+		describe('#obj', function () {
 			it('should return true only when the value is object', function () {
-				unagi.isObject(void 0).should.equal(false);
-				unagi.isObject(null).should.equal(false);
-				unagi.isObject(NaN).should.equal(false);
-				unagi.isObject(0).should.equal(false);
-				unagi.isObject(1).should.equal(false);
-				unagi.isObject(true).should.equal(false);
-				unagi.isObject(false).should.equal(false);
-				unagi.isObject('').should.equal(false);
-				unagi.isObject('str').should.equal(false);
-				unagi.isObject(/regexp/).should.equal(true);
-				unagi.isObject(new Date()).should.equal(true);
-				unagi.isObject(function () {}).should.equal(false);
-				unagi.isObject(Object).should.equal(false);
-				unagi.isObject([]).should.equal(true);
-				unagi.isObject([1]).should.equal(true);
-				unagi.isObject({}).should.equal(true);
-				unagi.isObject({
+				is.obj(void 0).should.equal(false);
+				is.obj(null).should.equal(false);
+				is.obj(NaN).should.equal(false);
+				is.obj(0).should.equal(false);
+				is.obj(1).should.equal(false);
+				is.obj(true).should.equal(false);
+				is.obj(false).should.equal(false);
+				is.obj('').should.equal(false);
+				is.obj('str').should.equal(false);
+				is.obj(/regexp/).should.equal(true);
+				is.obj(new Date()).should.equal(true);
+				is.obj(function () {}).should.equal(false);
+				is.obj(Object).should.equal(false);
+				is.obj([]).should.equal(true);
+				is.obj([1]).should.equal(true);
+				is.obj({}).should.equal(true);
+				is.obj({
 					a: 1
 				}).should.equal(true);
 			});
 		});
 
-		describe('#isNotObject', function () {
+		describe('#nObj', function () {
 			it('should return false only when the value is object', function () {
-				unagi.isNotObject(void 0).should.equal(true);
-				unagi.isNotObject(null).should.equal(true);
-				unagi.isNotObject(NaN).should.equal(true);
-				unagi.isNotObject(0).should.equal(true);
-				unagi.isNotObject(1).should.equal(true);
-				unagi.isNotObject(true).should.equal(true);
-				unagi.isNotObject(false).should.equal(true);
-				unagi.isNotObject('').should.equal(true);
-				unagi.isNotObject('str').should.equal(true);
-				unagi.isNotObject(/regexp/).should.equal(false);
-				unagi.isNotObject(new Date()).should.equal(false);
-				unagi.isNotObject(function () {}).should.equal(true);
-				unagi.isNotObject(Object).should.equal(true);
-				unagi.isNotObject([]).should.equal(false);
-				unagi.isNotObject([1]).should.equal(false);
-				unagi.isNotObject({}).should.equal(false);
-				unagi.isNotObject({
+				is.nObj(void 0).should.equal(true);
+				is.nObj(null).should.equal(true);
+				is.nObj(NaN).should.equal(true);
+				is.nObj(0).should.equal(true);
+				is.nObj(1).should.equal(true);
+				is.nObj(true).should.equal(true);
+				is.nObj(false).should.equal(true);
+				is.nObj('').should.equal(true);
+				is.nObj('str').should.equal(true);
+				is.nObj(/regexp/).should.equal(false);
+				is.nObj(new Date()).should.equal(false);
+				is.nObj(function () {}).should.equal(true);
+				is.nObj(Object).should.equal(true);
+				is.nObj([]).should.equal(false);
+				is.nObj([1]).should.equal(false);
+				is.nObj({}).should.equal(false);
+				is.nObj({
 					a: 1
 				}).should.equal(false);
 			});
 		});
 
-		describe('#isNull', function () {
+		describe('#nul', function () {
 			it('should return true only when the value is null', function () {
-				unagi.isNull(void 0).should.equal(false);
-				unagi.isNull(null).should.equal(true);
-				unagi.isNull(NaN).should.equal(false);
-				unagi.isNull(0).should.equal(false);
-				unagi.isNull(1).should.equal(false);
-				unagi.isNull(true).should.equal(false);
-				unagi.isNull(false).should.equal(false);
-				unagi.isNull('').should.equal(false);
-				unagi.isNull('str').should.equal(false);
-				unagi.isNull(/regexp/).should.equal(false);
-				unagi.isNull(new Date()).should.equal(false);
-				unagi.isNull(function () {}).should.equal(false);
-				unagi.isNull(Object).should.equal(false);
-				unagi.isNull([]).should.equal(false);
-				unagi.isNull([1]).should.equal(false);
-				unagi.isNull({}).should.equal(false);
-				unagi.isNull({
+				is.nul(void 0).should.equal(false);
+				is.nul(null).should.equal(true);
+				is.nul(NaN).should.equal(false);
+				is.nul(0).should.equal(false);
+				is.nul(1).should.equal(false);
+				is.nul(true).should.equal(false);
+				is.nul(false).should.equal(false);
+				is.nul('').should.equal(false);
+				is.nul('str').should.equal(false);
+				is.nul(/regexp/).should.equal(false);
+				is.nul(new Date()).should.equal(false);
+				is.nul(function () {}).should.equal(false);
+				is.nul(Object).should.equal(false);
+				is.nul([]).should.equal(false);
+				is.nul([1]).should.equal(false);
+				is.nul({}).should.equal(false);
+				is.nul({
 					a: 1
 				}).should.equal(false);
 			});
 		});
 
-		describe('#isNotNull', function () {
+		describe('#nNul', function () {
 			it('should return false only when the value is null', function () {
-				unagi.isNotNull(void 0).should.equal(true);
-				unagi.isNotNull(null).should.equal(false);
-				unagi.isNotNull(NaN).should.equal(true);
-				unagi.isNotNull(0).should.equal(true);
-				unagi.isNotNull(1).should.equal(true);
-				unagi.isNotNull(true).should.equal(true);
-				unagi.isNotNull(false).should.equal(true);
-				unagi.isNotNull('').should.equal(true);
-				unagi.isNotNull('str').should.equal(true);
-				unagi.isNotNull(/regexp/).should.equal(true);
-				unagi.isNotNull(new Date()).should.equal(true);
-				unagi.isNotNull(function () {}).should.equal(true);
-				unagi.isNotNull(Object).should.equal(true);
-				unagi.isNotNull([]).should.equal(true);
-				unagi.isNotNull([1]).should.equal(true);
-				unagi.isNotNull({}).should.equal(true);
-				unagi.isNotNull({
+				is.nNul(void 0).should.equal(true);
+				is.nNul(null).should.equal(false);
+				is.nNul(NaN).should.equal(true);
+				is.nNul(0).should.equal(true);
+				is.nNul(1).should.equal(true);
+				is.nNul(true).should.equal(true);
+				is.nNul(false).should.equal(true);
+				is.nNul('').should.equal(true);
+				is.nNul('str').should.equal(true);
+				is.nNul(/regexp/).should.equal(true);
+				is.nNul(new Date()).should.equal(true);
+				is.nNul(function () {}).should.equal(true);
+				is.nNul(Object).should.equal(true);
+				is.nNul([]).should.equal(true);
+				is.nNul([1]).should.equal(true);
+				is.nNul({}).should.equal(true);
+				is.nNul({
 					a: 1
 				}).should.equal(true);
 			});
 		});
 
-		describe('#isUndefined', function () {
+		describe('#undef', function () {
 			it('should return true only when the value is undefined', function () {
-				unagi.isUndefined(void 0).should.equal(true);
-				unagi.isUndefined(null).should.equal(false);
-				unagi.isUndefined(NaN).should.equal(false);
-				unagi.isUndefined(0).should.equal(false);
-				unagi.isUndefined(1).should.equal(false);
-				unagi.isUndefined(true).should.equal(false);
-				unagi.isUndefined(false).should.equal(false);
-				unagi.isUndefined('').should.equal(false);
-				unagi.isUndefined('str').should.equal(false);
-				unagi.isUndefined(/regexp/).should.equal(false);
-				unagi.isUndefined(new Date()).should.equal(false);
-				unagi.isUndefined(function () {}).should.equal(false);
-				unagi.isUndefined(Object).should.equal(false);
-				unagi.isUndefined([]).should.equal(false);
-				unagi.isUndefined([1]).should.equal(false);
-				unagi.isUndefined({}).should.equal(false);
-				unagi.isUndefined({
+				is.undef(void 0).should.equal(true);
+				is.undef(null).should.equal(false);
+				is.undef(NaN).should.equal(false);
+				is.undef(0).should.equal(false);
+				is.undef(1).should.equal(false);
+				is.undef(true).should.equal(false);
+				is.undef(false).should.equal(false);
+				is.undef('').should.equal(false);
+				is.undef('str').should.equal(false);
+				is.undef(/regexp/).should.equal(false);
+				is.undef(new Date()).should.equal(false);
+				is.undef(function () {}).should.equal(false);
+				is.undef(Object).should.equal(false);
+				is.undef([]).should.equal(false);
+				is.undef([1]).should.equal(false);
+				is.undef({}).should.equal(false);
+				is.undef({
 					a: 1
 				}).should.equal(false);
 			});
 		});
 
-		describe('#isNotUndefined', function () {
+		describe('#nUndef', function () {
 			it('should return false only when the value is undefined', function () {
-				unagi.isNotUndefined(void 0).should.equal(false);
-				unagi.isNotUndefined(null).should.equal(true);
-				unagi.isNotUndefined(NaN).should.equal(true);
-				unagi.isNotUndefined(0).should.equal(true);
-				unagi.isNotUndefined(1).should.equal(true);
-				unagi.isNotUndefined(true).should.equal(true);
-				unagi.isNotUndefined(false).should.equal(true);
-				unagi.isNotUndefined('').should.equal(true);
-				unagi.isNotUndefined('str').should.equal(true);
-				unagi.isNotUndefined(/regexp/).should.equal(true);
-				unagi.isNotUndefined(new Date()).should.equal(true);
-				unagi.isNotUndefined(function () {}).should.equal(true);
-				unagi.isNotUndefined(Object).should.equal(true);
-				unagi.isNotUndefined([]).should.equal(true);
-				unagi.isNotUndefined([1]).should.equal(true);
-				unagi.isNotUndefined({}).should.equal(true);
-				unagi.isNotUndefined({
+				is.nUndef(void 0).should.equal(false);
+				is.nUndef(null).should.equal(true);
+				is.nUndef(NaN).should.equal(true);
+				is.nUndef(0).should.equal(true);
+				is.nUndef(1).should.equal(true);
+				is.nUndef(true).should.equal(true);
+				is.nUndef(false).should.equal(true);
+				is.nUndef('').should.equal(true);
+				is.nUndef('str').should.equal(true);
+				is.nUndef(/regexp/).should.equal(true);
+				is.nUndef(new Date()).should.equal(true);
+				is.nUndef(function () {}).should.equal(true);
+				is.nUndef(Object).should.equal(true);
+				is.nUndef([]).should.equal(true);
+				is.nUndef([1]).should.equal(true);
+				is.nUndef({}).should.equal(true);
+				is.nUndef({
 					a: 1
 				}).should.equal(true);
 			});
 		});
 
-		describe('#isSet', function () {
+		describe('#set', function () {
 			it('should return true only when the value is set', function () {
-				unagi.isSet(void 0).should.equal(false);
-				unagi.isSet(null).should.equal(false);
-				unagi.isSet(NaN).should.equal(true);
-				unagi.isSet(0).should.equal(true);
-				unagi.isSet(1).should.equal(true);
-				unagi.isSet(true).should.equal(true);
-				unagi.isSet(false).should.equal(true);
-				unagi.isSet('').should.equal(true);
-				unagi.isSet('str').should.equal(true);
-				unagi.isSet(/regexp/).should.equal(true);
-				unagi.isSet(new Date()).should.equal(true);
-				unagi.isSet(function () {}).should.equal(true);
-				unagi.isSet(Object).should.equal(true);
-				unagi.isSet([]).should.equal(true);
-				unagi.isSet([1]).should.equal(true);
-				unagi.isSet({}).should.equal(true);
-				unagi.isSet({
+				is.set(void 0).should.equal(false);
+				is.set(null).should.equal(false);
+				is.set(NaN).should.equal(true);
+				is.set(0).should.equal(true);
+				is.set(1).should.equal(true);
+				is.set(true).should.equal(true);
+				is.set(false).should.equal(true);
+				is.set('').should.equal(true);
+				is.set('str').should.equal(true);
+				is.set(/regexp/).should.equal(true);
+				is.set(new Date()).should.equal(true);
+				is.set(function () {}).should.equal(true);
+				is.set(Object).should.equal(true);
+				is.set([]).should.equal(true);
+				is.set([1]).should.equal(true);
+				is.set({}).should.equal(true);
+				is.set({
 					a: 1
 				}).should.equal(true);
 			});
 		});
 
-		describe('#isNotSet', function () {
+		describe('#nSet', function () {
 			it('should return false only when the value is set', function () {
-				unagi.isNotSet(void 0).should.equal(true);
-				unagi.isNotSet(null).should.equal(true);
-				unagi.isNotSet(NaN).should.equal(false);
-				unagi.isNotSet(0).should.equal(false);
-				unagi.isNotSet(1).should.equal(false);
-				unagi.isNotSet(true).should.equal(false);
-				unagi.isNotSet(false).should.equal(false);
-				unagi.isNotSet('').should.equal(false);
-				unagi.isNotSet('str').should.equal(false);
-				unagi.isNotSet(/regexp/).should.equal(false);
-				unagi.isNotSet(new Date()).should.equal(false);
-				unagi.isNotSet(function () {}).should.equal(false);
-				unagi.isNotSet(Object).should.equal(false);
-				unagi.isNotSet([]).should.equal(false);
-				unagi.isNotSet([1]).should.equal(false);
-				unagi.isNotSet({}).should.equal(false);
-				unagi.isNotSet({
+				is.nSet(void 0).should.equal(true);
+				is.nSet(null).should.equal(true);
+				is.nSet(NaN).should.equal(false);
+				is.nSet(0).should.equal(false);
+				is.nSet(1).should.equal(false);
+				is.nSet(true).should.equal(false);
+				is.nSet(false).should.equal(false);
+				is.nSet('').should.equal(false);
+				is.nSet('str').should.equal(false);
+				is.nSet(/regexp/).should.equal(false);
+				is.nSet(new Date()).should.equal(false);
+				is.nSet(function () {}).should.equal(false);
+				is.nSet(Object).should.equal(false);
+				is.nSet([]).should.equal(false);
+				is.nSet([1]).should.equal(false);
+				is.nSet({}).should.equal(false);
+				is.nSet({
 					a: 1
 				}).should.equal(false);
 			});
 		});
 
-		describe('#isEmptyArray', function () {
+		describe('#emptyArr', function () {
 			it('should return true only when the value is an array and is empty', function () {
-				unagi.isEmptyArray(void 0).should.equal(false);
-				unagi.isEmptyArray(null).should.equal(false);
-				unagi.isEmptyArray(NaN).should.equal(false);
-				unagi.isEmptyArray(0).should.equal(false);
-				unagi.isEmptyArray(1).should.equal(false);
-				unagi.isEmptyArray(true).should.equal(false);
-				unagi.isEmptyArray(false).should.equal(false);
-				unagi.isEmptyArray('').should.equal(false);
-				unagi.isEmptyArray('str').should.equal(false);
-				unagi.isEmptyArray(/regexp/).should.equal(false);
-				unagi.isEmptyArray(new Date()).should.equal(false);
-				unagi.isEmptyArray(function () {}).should.equal(false);
-				unagi.isEmptyArray(Object).should.equal(false);
-				unagi.isEmptyArray([]).should.equal(true);
-				unagi.isEmptyArray([1]).should.equal(false);
-				unagi.isEmptyArray({}).should.equal(false);
-				unagi.isEmptyArray({
+				is.emptyArr(void 0).should.equal(false);
+				is.emptyArr(null).should.equal(false);
+				is.emptyArr(NaN).should.equal(false);
+				is.emptyArr(0).should.equal(false);
+				is.emptyArr(1).should.equal(false);
+				is.emptyArr(true).should.equal(false);
+				is.emptyArr(false).should.equal(false);
+				is.emptyArr('').should.equal(false);
+				is.emptyArr('str').should.equal(false);
+				is.emptyArr(/regexp/).should.equal(false);
+				is.emptyArr(new Date()).should.equal(false);
+				is.emptyArr(function () {}).should.equal(false);
+				is.emptyArr(Object).should.equal(false);
+				is.emptyArr([]).should.equal(true);
+				is.emptyArr([1]).should.equal(false);
+				is.emptyArr({}).should.equal(false);
+				is.emptyArr({
 					a: 1
 				}).should.equal(false);
 			});
 		});
 
-		describe('#isEmptyObject', function () {
+		describe('#emptyObj', function () {
 			it('should return true only when the value is a JSON object and is empty', function () {
-				unagi.isEmptyObject(void 0).should.equal(false);
-				unagi.isEmptyObject(null).should.equal(false);
-				unagi.isEmptyObject(NaN).should.equal(false);
-				unagi.isEmptyObject(0).should.equal(false);
-				unagi.isEmptyObject(1).should.equal(false);
-				unagi.isEmptyObject(true).should.equal(false);
-				unagi.isEmptyObject(false).should.equal(false);
-				unagi.isEmptyObject('').should.equal(false);
-				unagi.isEmptyObject('str').should.equal(false);
-				unagi.isEmptyObject(/regexp/).should.equal(false);
-				unagi.isEmptyObject(new Date()).should.equal(false);
-				unagi.isEmptyObject(function () {}).should.equal(false);
-				unagi.isEmptyObject(Object).should.equal(false);
-				unagi.isEmptyObject([]).should.equal(false);
-				unagi.isEmptyObject([1]).should.equal(false);
-				unagi.isEmptyObject({}).should.equal(true);
-				unagi.isEmptyObject({
+				is.emptyObj(void 0).should.equal(false);
+				is.emptyObj(null).should.equal(false);
+				is.emptyObj(NaN).should.equal(false);
+				is.emptyObj(0).should.equal(false);
+				is.emptyObj(1).should.equal(false);
+				is.emptyObj(true).should.equal(false);
+				is.emptyObj(false).should.equal(false);
+				is.emptyObj('').should.equal(false);
+				is.emptyObj('str').should.equal(false);
+				is.emptyObj(/regexp/).should.equal(false);
+				is.emptyObj(new Date()).should.equal(false);
+				is.emptyObj(function () {}).should.equal(false);
+				is.emptyObj(Object).should.equal(false);
+				is.emptyObj([]).should.equal(false);
+				is.emptyObj([1]).should.equal(false);
+				is.emptyObj({}).should.equal(true);
+				is.emptyObj({
 					a: 1
 				}).should.equal(false);
 			});
 		});
 
-		describe('#isEmpty', function () {
+		describe('#empty', function () {
 			it('should return true only when the value is empty (falsey or empty array or empty JSON object)', function () {
-				unagi.isEmpty(void 0).should.equal(true);
-				unagi.isEmpty(null).should.equal(true);
-				unagi.isEmpty(NaN).should.equal(true);
-				unagi.isEmpty(0).should.equal(true);
-				unagi.isEmpty(1).should.equal(false);
-				unagi.isEmpty(true).should.equal(false);
-				unagi.isEmpty(false).should.equal(true);
-				unagi.isEmpty('').should.equal(true);
-				unagi.isEmpty('str').should.equal(false);
-				unagi.isEmpty(/regexp/).should.equal(false);
-				unagi.isEmpty(new Date()).should.equal(false);
-				unagi.isEmpty(function () {}).should.equal(false);
-				unagi.isEmpty(Object).should.equal(false);
-				unagi.isEmpty([]).should.equal(true);
-				unagi.isEmpty([1]).should.equal(false);
-				unagi.isEmpty({}).should.equal(true);
-				unagi.isEmpty({
+				is.empty(void 0).should.equal(true);
+				is.empty(null).should.equal(true);
+				is.empty(NaN).should.equal(true);
+				is.empty(0).should.equal(true);
+				is.empty(1).should.equal(false);
+				is.empty(true).should.equal(false);
+				is.empty(false).should.equal(true);
+				is.empty('').should.equal(true);
+				is.empty('str').should.equal(false);
+				is.empty(/regexp/).should.equal(false);
+				is.empty(new Date()).should.equal(false);
+				is.empty(function () {}).should.equal(false);
+				is.empty(Object).should.equal(false);
+				is.empty([]).should.equal(true);
+				is.empty([1]).should.equal(false);
+				is.empty({}).should.equal(true);
+				is.empty({
 					a: 1
 				}).should.equal(false);
 			});
 		});
 
-		describe('#isNotEmpty', function () {
+		describe('#nEmpty', function () {
 			it('should return false only when the value is empty (falsey or empty array or empty JSON object)', function () {
-				unagi.isNotEmpty(void 0).should.equal(false);
-				unagi.isNotEmpty(null).should.equal(false);
-				unagi.isNotEmpty(NaN).should.equal(false);
-				unagi.isNotEmpty(0).should.equal(false);
-				unagi.isNotEmpty(1).should.equal(true);
-				unagi.isNotEmpty(true).should.equal(true);
-				unagi.isNotEmpty(false).should.equal(false);
-				unagi.isNotEmpty('').should.equal(false);
-				unagi.isNotEmpty('str').should.equal(true);
-				unagi.isNotEmpty(/regexp/).should.equal(true);
-				unagi.isNotEmpty(new Date()).should.equal(true);
-				unagi.isNotEmpty(function () {}).should.equal(true);
-				unagi.isNotEmpty(Object).should.equal(true);
-				unagi.isNotEmpty([]).should.equal(false);
-				unagi.isNotEmpty([1]).should.equal(true);
-				unagi.isNotEmpty({}).should.equal(false);
-				unagi.isNotEmpty({
+				is.nEmpty(void 0).should.equal(false);
+				is.nEmpty(null).should.equal(false);
+				is.nEmpty(NaN).should.equal(false);
+				is.nEmpty(0).should.equal(false);
+				is.nEmpty(1).should.equal(true);
+				is.nEmpty(true).should.equal(true);
+				is.nEmpty(false).should.equal(false);
+				is.nEmpty('').should.equal(false);
+				is.nEmpty('str').should.equal(true);
+				is.nEmpty(/regexp/).should.equal(true);
+				is.nEmpty(new Date()).should.equal(true);
+				is.nEmpty(function () {}).should.equal(true);
+				is.nEmpty(Object).should.equal(true);
+				is.nEmpty([]).should.equal(false);
+				is.nEmpty([1]).should.equal(true);
+				is.nEmpty({}).should.equal(false);
+				is.nEmpty({
 					a: 1
 				}).should.equal(true);
 			});
 		});
 
-		describe('#isJson', function () {
+		describe('#json', function () {
 			it('should return true only when the value is JSON object', function () {
-				unagi.isJson(void 0).should.equal(false);
-				unagi.isJson(null).should.equal(false);
-				unagi.isJson(NaN).should.equal(false);
-				unagi.isJson(0).should.equal(false);
-				unagi.isJson(1).should.equal(false);
-				unagi.isJson(true).should.equal(false);
-				unagi.isJson(false).should.equal(false);
-				unagi.isJson('').should.equal(false);
-				unagi.isJson('str').should.equal(false);
-				unagi.isJson(/regexp/).should.equal(false);
-				unagi.isJson(new Date()).should.equal(false);
-				unagi.isJson(function () {}).should.equal(false);
-				unagi.isJson(Object).should.equal(false);
-				unagi.isJson([]).should.equal(false);
-				unagi.isJson([1]).should.equal(false);
-				unagi.isJson({}).should.equal(true);
-				unagi.isJson({
+				is.json(void 0).should.equal(false);
+				is.json(null).should.equal(false);
+				is.json(NaN).should.equal(false);
+				is.json(0).should.equal(false);
+				is.json(1).should.equal(false);
+				is.json(true).should.equal(false);
+				is.json(false).should.equal(false);
+				is.json('').should.equal(false);
+				is.json('str').should.equal(false);
+				is.json(/regexp/).should.equal(false);
+				is.json(new Date()).should.equal(false);
+				is.json(function () {}).should.equal(false);
+				is.json(Object).should.equal(false);
+				is.json([]).should.equal(false);
+				is.json([1]).should.equal(false);
+				is.json({}).should.equal(true);
+				is.json({
 					a: 1
 				}).should.equal(true);
 			});
 		});
 
-		describe('#isNotJson', function () {
+		describe('#nJson', function () {
 			it('should return false only when the value is JSON object', function () {
-				unagi.isNotJson(void 0).should.equal(true);
-				unagi.isNotJson(null).should.equal(true);
-				unagi.isNotJson(NaN).should.equal(true);
-				unagi.isNotJson(0).should.equal(true);
-				unagi.isNotJson(1).should.equal(true);
-				unagi.isNotJson(true).should.equal(true);
-				unagi.isNotJson(false).should.equal(true);
-				unagi.isNotJson('').should.equal(true);
-				unagi.isNotJson('str').should.equal(true);
-				unagi.isNotJson(/regexp/).should.equal(true);
-				unagi.isNotJson(new Date()).should.equal(true);
-				unagi.isNotJson(function () {}).should.equal(true);
-				unagi.isNotJson(Object).should.equal(true);
-				unagi.isNotJson([]).should.equal(true);
-				unagi.isNotJson([1]).should.equal(true);
-				unagi.isNotJson({}).should.equal(false);
-				unagi.isNotJson({
+				is.nJson(void 0).should.equal(true);
+				is.nJson(null).should.equal(true);
+				is.nJson(NaN).should.equal(true);
+				is.nJson(0).should.equal(true);
+				is.nJson(1).should.equal(true);
+				is.nJson(true).should.equal(true);
+				is.nJson(false).should.equal(true);
+				is.nJson('').should.equal(true);
+				is.nJson('str').should.equal(true);
+				is.nJson(/regexp/).should.equal(true);
+				is.nJson(new Date()).should.equal(true);
+				is.nJson(function () {}).should.equal(true);
+				is.nJson(Object).should.equal(true);
+				is.nJson([]).should.equal(true);
+				is.nJson([1]).should.equal(true);
+				is.nJson({}).should.equal(false);
+				is.nJson({
 					a: 1
 				}).should.equal(false);
 			});
 		});
 
-		describe('#isFalsey', function () {
+		describe('#falsey', function () {
 			it('should return true only when the value is falsey', function () {
-				unagi.isFalsey(void 0).should.equal(true);
-				unagi.isFalsey(null).should.equal(true);
-				unagi.isFalsey(NaN).should.equal(true);
-				unagi.isFalsey(0).should.equal(true);
-				unagi.isFalsey(1).should.equal(false);
-				unagi.isFalsey(true).should.equal(false);
-				unagi.isFalsey(false).should.equal(true);
-				unagi.isFalsey('').should.equal(true);
-				unagi.isFalsey('str').should.equal(false);
-				unagi.isFalsey(/regexp/).should.equal(false);
-				unagi.isFalsey(new Date()).should.equal(false);
-				unagi.isFalsey(function () {}).should.equal(false);
-				unagi.isFalsey(Object).should.equal(false);
-				unagi.isFalsey([]).should.equal(false);
-				unagi.isFalsey([1]).should.equal(false);
-				unagi.isFalsey({}).should.equal(false);
-				unagi.isFalsey({
+				is.falsey(void 0).should.equal(true);
+				is.falsey(null).should.equal(true);
+				is.falsey(NaN).should.equal(true);
+				is.falsey(0).should.equal(true);
+				is.falsey(1).should.equal(false);
+				is.falsey(true).should.equal(false);
+				is.falsey(false).should.equal(true);
+				is.falsey('').should.equal(true);
+				is.falsey('str').should.equal(false);
+				is.falsey(/regexp/).should.equal(false);
+				is.falsey(new Date()).should.equal(false);
+				is.falsey(function () {}).should.equal(false);
+				is.falsey(Object).should.equal(false);
+				is.falsey([]).should.equal(false);
+				is.falsey([1]).should.equal(false);
+				is.falsey({}).should.equal(false);
+				is.falsey({
 					a: 1
 				}).should.equal(false);
 			});
 		});
 
-		describe('#isTruthy', function () {
+		describe('#truthy', function () {
 			it('should return true only when the value is truthy', function () {
-				unagi.isTruthy(void 0).should.equal(false);
-				unagi.isTruthy(null).should.equal(false);
-				unagi.isTruthy(NaN).should.equal(false);
-				unagi.isTruthy(0).should.equal(false);
-				unagi.isTruthy(1).should.equal(true);
-				unagi.isTruthy(true).should.equal(true);
-				unagi.isTruthy(false).should.equal(false);
-				unagi.isTruthy('').should.equal(false);
-				unagi.isTruthy('str').should.equal(true);
-				unagi.isTruthy(/regexp/).should.equal(true);
-				unagi.isTruthy(new Date()).should.equal(true);
-				unagi.isTruthy(function () {}).should.equal(true);
-				unagi.isTruthy(Object).should.equal(true);
-				unagi.isTruthy([]).should.equal(true);
-				unagi.isTruthy([1]).should.equal(true);
-				unagi.isTruthy({}).should.equal(true);
-				unagi.isTruthy({
+				is.truthy(void 0).should.equal(false);
+				is.truthy(null).should.equal(false);
+				is.truthy(NaN).should.equal(false);
+				is.truthy(0).should.equal(false);
+				is.truthy(1).should.equal(true);
+				is.truthy(true).should.equal(true);
+				is.truthy(false).should.equal(false);
+				is.truthy('').should.equal(false);
+				is.truthy('str').should.equal(true);
+				is.truthy(/regexp/).should.equal(true);
+				is.truthy(new Date()).should.equal(true);
+				is.truthy(function () {}).should.equal(true);
+				is.truthy(Object).should.equal(true);
+				is.truthy([]).should.equal(true);
+				is.truthy([1]).should.equal(true);
+				is.truthy({}).should.equal(true);
+				is.truthy({
 					a: 1
 				}).should.equal(true);
 			});

@@ -1,6 +1,6 @@
 {
   "name": "unagi",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A collection of basic JavaScript utility functions intended for Node.js (V8). It is best optimized for performance with NO cross-browser compatibility checks.",
   "main": "lib/index.js",
   "scripts": {
