@@ -1,7 +1,7 @@
 (function () {
 	'use strict';
 
-	var is = require('../../lib/index.js').is;
+	var is = require('../../lib/unagi.js').is;
 
 	describe('is', function () {
 		describe('#arr', function () {
