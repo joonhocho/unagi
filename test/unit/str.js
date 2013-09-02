@@ -1,14 +1,13 @@
 (function () {
 	'use strict';
 
-	var should = require('should'),
-		str = require('../../lib/unagi.js').str;
+	var str = require('../../lib/unagi.js').str;
 
 	describe('str', function () {
 		describe('#ucfirst', function () {
 			it('should not try to cast to string', function () {
-				should.not.exist(str.ucfirst(void 0));
-				should.not.exist(str.ucfirst(null));
+				(str.ucfirst(void 0) === void 0).should.equal(true);
+				(str.ucfirst(null) === null).should.equal(true);
 				isNaN(str.ucfirst(NaN)).should.equal(true);
 				str.ucfirst(0).should.equal(0);
 				str.ucfirst(false).should.equal(false);
@@ -30,11 +29,12 @@
 
 		describe('#lcfirst', function () {
 			it('should not try to cast to string', function () {
-				should.not.exist(str.lcfirst(void 0));
-				should.not.exist(str.lcfirst(null));
+				(str.lcfirst(void 0) === void 0).should.equal(true);
+				(str.lcfirst(null) === null).should.equal(true);
 				isNaN(str.lcfirst(NaN)).should.equal(true);
 				str.lcfirst(0).should.equal(0);
-				str.lcfirst(false).should.equal(false);
+				str.lcfirst(false).should.equal(
+					false);
 				str.lcfirst('').should.equal('');
 			});
 
