@@ -63,15 +63,15 @@
 			});
 		});
 
-		describe('#values', function () {
+		describe('#vals', function () {
 			it('should return an empty array for empty object/array', function () {
-				obj.values({}).should.eql([]);
-				obj.values([]).should.eql([]);
-				obj.values(new Date()).should.eql([]);
+				obj.vals({}).should.eql([]);
+				obj.vals([]).should.eql([]);
+				obj.vals(new Date()).should.eql([]);
 			});
 
 			it('should return an array of values for object/array', function () {
-				obj.values({
+				obj.vals({
 					a: void 0,
 					b: null,
 					c: 0,
@@ -79,15 +79,15 @@
 					e: ''
 				}).should.eql([void 0, null, 0, false, '']);
 
-				obj.values(['a', 'b', 'c']).should.eql(['a', 'b', 'c']);
+				obj.vals(['a', 'b', 'c']).should.eql(['a', 'b', 'c']);
 
 				var d = new Date();
 				d.test = true;
-				obj.values(d).should.eql([true]);
+				obj.vals(d).should.eql([true]);
 			});
 		});
 
-		describe('#each', function () {
+		function testCommonCallbackFunctions(fn) {
 			it('should never call a function for empty object', function () {
 				var count = 0;
 
@@ -95,20 +95,20 @@
 					count++;
 				}
 
-				obj.each({}, addCount);
+				fn({}, addCount);
 				count.should.eql(0);
 
-				obj.each([], addCount);
+				fn([], addCount);
 				count.should.eql(0);
 
-				obj.each(new Date(), addCount);
+				fn(new Date(), addCount);
 				count.should.eql(0);
 			});
 
 			it('should pass parameters properly and keep the order', function () {
 				var keys = [],
 					values = [];
-				obj.each({
+				fn({
 					a: 1,
 					c: 3,
 					b: 2
@@ -122,7 +122,7 @@
 
 				keys = [];
 				values = [];
-				obj.each([5, 2, 4], function (val, key, obj) {
+				fn([5, 2, 4], function (val, key, obj) {
 					(obj[key] === val).should.equal(true);
 					keys.push(key);
 					values.push(val);
@@ -137,7 +137,7 @@
 				};
 				testObj.f = 2;
 				testObj.a = 8;
-				obj.each(testObj, function (val, key, obj) {
+				fn(testObj, function (val, key, obj) {
 					(obj[key] === val).should.equal(true);
 					keys.push(key);
 					values.push(val);
@@ -151,64 +151,64 @@
 					a: 1,
 					b: 2
 				};
-				obj.each(testObj, function () {
+				fn(testObj, function () {
 					(this === void 0).should.equal(true);
 				});
 
-				obj.each(testObj, function () {
+				fn(testObj, function () {
 					(this === void 0).should.equal(true);
 				}, void 0);
 
-				obj.each(testObj, function () {
+				fn(testObj, function () {
 					(this === null).should.equal(true);
 				}, null);
 
-				obj.each(testObj, function () {
+				fn(testObj, function () {
 					isNaN(this).should.equal(true);
 				}, NaN);
 
-				obj.each(testObj, function () {
+				fn(testObj, function () {
 					this.should.equal(0);
 				}, 0);
 
-				obj.each(testObj, function () {
+				fn(testObj, function () {
 					this.should.equal(1);
 				}, 1);
 
-				obj.each(testObj, function () {
+				fn(testObj, function () {
 					this.should.equal(true);
 				}, true);
 
-				obj.each(testObj, function () {
+				fn(testObj, function () {
 					this.should.equal(false);
 				}, false);
 
-				obj.each(testObj, function () {
+				fn(testObj, function () {
 					this.should.equal('');
 				}, '');
 
-				obj.each(testObj, function () {
+				fn(testObj, function () {
 					this.should.equal('str');
 				}, 'str');
 
-				obj.each(testObj, function () {
+				fn(testObj, function () {
 					this.should.eql({});
 				}, {});
 
-				obj.each(testObj, function () {
+				fn(testObj, function () {
 					this.should.eql([]);
 				}, []);
 
 				var thisp = {};
-				obj.each(testObj, function () {
+				fn(testObj, function () {
 					this.should.equal(thisp);
 				}, thisp);
 			});
 
-			it('should iterate only on the specified keys if given', function () {
+			it('should iterate on keys that exist in object and in specified key list if given', function () {
 				var keys = [],
 					values = [];
-				obj.each({
+				fn({
 					a: 1,
 					c: 3,
 					b: 2
@@ -217,161 +217,179 @@
 					keys.push(key);
 					values.push(val);
 				}, null, ['b', 'c', 'd']);
-				keys.should.eql(['b', 'c', 'd']);
-				values.should.eql([2, 3, void 0]);
+				keys.should.eql(['b', 'c']);
+				values.should.eql([2, 3]);
 			});
+
+			it('should not modify original object', function () {
+				var testObj = {
+					a: 1,
+					c: 3,
+					b: 2
+				};
+
+				obj.map(testObj, function (val) {
+					return val > 2;
+				});
+
+				testObj.should.eql({
+					a: 1,
+					c: 3,
+					b: 2
+				});
+			});
+		}
+
+		describe('#each', function () {
+			testCommonCallbackFunctions(obj.each);
 		});
 
 		describe('#map', function () {
-			it('should never call a function for empty object', function () {
-				var count = 0;
+			testCommonCallbackFunctions(obj.map);
 
-				function addCount() {
-					count++;
-				}
-
-				obj.map({}, addCount);
-				count.should.eql(0);
-
-				obj.map([], addCount);
-				count.should.eql(0);
-
-				obj.map(new Date(), addCount);
-				count.should.eql(0);
-			});
-
-			it('should pass parameters properly and keep the order', function () {
-				var keys = [],
-					values = [];
+			it('should map returned values into new key/value object', function () {
 				obj.map({
 					a: 1,
 					c: 3,
 					b: 2
-				}, function (val, key, obj) {
-					(obj[key] === val).should.equal(true);
-					keys.push(key);
-					values.push(val);
-				});
-				keys.should.eql(['a', 'c', 'b']);
-				values.should.eql([1, 3, 2]);
-
-				keys = [];
-				values = [];
-				obj.map([5, 2, 4], function (val, key, obj) {
-					(obj[key] === val).should.equal(true);
-					keys.push(key);
-					values.push(val);
-				});
-				keys.should.eql(['0', '1', '2']);
-				values.should.eql([5, 2, 4]);
-
-				keys = [];
-				values = [];
-				var testObj = {
-					c: 3
-				};
-				testObj.f = 2;
-				testObj.a = 8;
-				obj.map(testObj, function (val, key, obj) {
-					(obj[key] === val).should.equal(true);
-					keys.push(key);
-					values.push(val);
-				});
-				keys.should.eql(['c', 'f', 'a']);
-				values.should.eql([3, 2, 8]);
-			});
-
-			it('should call a function with proper "this"', function () {
-				var testObj = {
-					a: 1,
-					b: 2
-				};
-				obj.map(testObj, function () {
-					(this === void 0).should.equal(true);
+				}, function (val, key /*, obj*/ ) {
+					return [val, key];
+				}).should.eql({
+					a: [1, 'a'],
+					c: [3, 'c'],
+					b: [2, 'b']
 				});
 
-				obj.map(testObj, function () {
-					(this === void 0).should.equal(true);
-				}, void 0);
-
-				obj.map(testObj, function () {
-					(this === null).should.equal(true);
-				}, null);
-
-				obj.map(testObj, function () {
-					isNaN(this).should.equal(true);
-				}, NaN);
-
-				obj.map(testObj, function () {
-					this.should.equal(0);
-				}, 0);
-
-				obj.map(testObj, function () {
-					this.should.equal(1);
-				}, 1);
-
-				obj.map(testObj, function () {
-					this.should.equal(true);
-				}, true);
-
-				obj.map(testObj, function () {
-					this.should.equal(false);
-				}, false);
-
-				obj.map(testObj, function () {
-					this.should.equal('');
-				}, '');
-
-				obj.map(testObj, function () {
-					this.should.equal('str');
-				}, 'str');
-
-				obj.map(testObj, function () {
-					this.should.eql({});
-				}, {});
-
-				obj.map(testObj, function () {
-					this.should.eql([]);
-				}, []);
-
-				var thisp = {};
-				obj.map(testObj, function () {
-					this.should.equal(thisp);
-				}, thisp);
-			});
-
-			it('should iterate only on the specified keys if given', function () {
-				var keys = [],
-					values = [];
 				obj.map({
 					a: 1,
 					c: 3,
 					b: 2
-				}, function (val, key, obj) {
-					(obj[key] === val).should.equal(true);
-					keys.push(key);
-					values.push(val);
-				}, null, ['b', 'c', 'd']);
-				keys.should.eql(['b', 'c', 'd']);
-				values.should.eql([2, 3, void 0]);
-			});
-
-			it('should map returned values into a new array to return', function () {
-				var keys = [],
-					values = [];
-				obj.map({
-					a: 1,
-					c: 3,
-					b: 2
-				}, function (val, key, obj) {
-					(obj[key] === val).should.equal(true);
-					keys.push(key);
-					values.push(val);
-				}, null, ['b', 'c', 'd']);
-				keys.should.eql(['b', 'c', 'd']);
-				values.should.eql([2, 3, void 0]);
+				}, function (val /*, key, obj*/ ) {
+					return val > 2;
+				}).should.eql({
+					a: false,
+					c: true,
+					b: false
+				});
 			});
 		});
-	});
 
+		describe('#mapVals', function () {
+			testCommonCallbackFunctions(obj.mapVals);
+
+			it('should map returned values into a new array to return', function () {
+				obj.mapVals({
+					a: 1,
+					c: 3,
+					b: 2
+				}, function (val, key /*, obj*/ ) {
+					return [val, key];
+				}).should.eql([[1, 'a'], [3, 'c'], [2, 'b']]);
+
+				obj.mapVals({
+					a: 1,
+					c: 3,
+					b: 2
+				}, function (val /*, key, obj*/ ) {
+					return val > 2;
+				}).should.eql([
+					false,
+					true,
+					false
+				]);
+			});
+		});
+
+		describe('#filter', function () {
+			testCommonCallbackFunctions(obj.filter);
+
+			it('should filter out failing key/value pairs and return new object', function () {
+				obj.filter({
+					a: 1,
+					c: 3,
+					b: 2
+				}, function ( /*val, key, obj*/ ) {
+					return true;
+				}).should.eql({
+					a: 1,
+					c: 3,
+					b: 2
+				});
+
+				obj.filter({
+					a: 1,
+					c: 3,
+					b: 2
+				}, function ( /*val, key, obj*/ ) {
+					return false;
+				}).should.eql({});
+
+				obj.filter({
+					a: 1,
+					c: 3,
+					b: 2
+				}, function (val /*, key, obj*/ ) {
+					return val > 1;
+				}).should.eql({
+					c: 3,
+					b: 2
+				});
+
+				obj.filter({
+					a: 1,
+					c: 3,
+					b: 2
+				}, function (val /*, key, obj*/ ) {
+					// truthy / falsey instead of true / false
+					return val > 1 ? 1 : 0;
+				}).should.eql({
+					c: 3,
+					b: 2
+				});
+
+				obj.filter([4, 2, 8], function (val /*, key, obj*/ ) {
+					return val > 5;
+				}).should.eql({
+					'2': 8
+				});
+			});
+		});
+
+		describe('#copy', function () {
+			it('should always create new object', function () {
+				obj.copy({
+					a: 1,
+					c: 3,
+					b: 2
+				}).should.not.equal({
+					a: 1,
+					c: 3,
+					b: 2
+				});
+
+				obj.copy({
+					a: 1,
+					c: 3,
+					b: 2
+				}).should.eql({
+					a: 1,
+					c: 3,
+					b: 2
+				});
+			});
+
+			it('should create and return a new object with same key/value pairs in the same order', function () {
+				obj.copy({
+					a: 1,
+					c: 3,
+					b: 2
+				}).should.eql({
+					a: 1,
+					c: 3,
+					b: 2
+				});
+			});
+		});
+
+	});
 })();
