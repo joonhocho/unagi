@@ -636,7 +636,8 @@
 					}
 				},
 					to = {};
-				obj.add(from, to).should.eql(from);
+
+				obj.copyR(from, to).should.eql(from);
 				to.a.should.not.equal(from.a);
 			});
 		});
