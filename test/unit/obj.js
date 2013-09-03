@@ -356,7 +356,7 @@
 		});
 
 		describe('#copy', function () {
-			it('should always create new object', function () {
+			it('should create new object if "to" is not specified', function () {
 				obj.copy({
 					a: 1,
 					c: 3,
@@ -378,8 +378,94 @@
 				});
 			});
 
-			it('should create and return a new object with same key/value pairs in the same order', function () {
+			it('should overwrite existing values while keeping the key order', function () {
+				var to = {
+					d: 5,
+					c: 4
+				};
 				obj.copy({
+					a: 1,
+					c: 3,
+					b: 2
+				}, to).should.eql({
+					d: 5,
+					c: 3,
+					a: 1,
+					b: 2
+				});
+				Object.keys(to).should.eql(['d', 'c', 'a', 'b']);
+			});
+
+			it('should not remove any existing keys', function () {
+				var to = {
+					d: 5,
+					c: 4,
+					f: void 0
+				};
+				obj.copy({
+					a: 1,
+					c: 3,
+					b: 2
+				}, to).should.eql({
+					d: 5,
+					c: 3,
+					f: void 0,
+					a: 1,
+					b: 2
+				});
+				Object.keys(to).should.eql(['d', 'c', 'f', 'a', 'b']);
+			});
+
+			it('should not copy any undefined values', function () {
+				var to = {
+					d: 5,
+					c: 4,
+					f: void 0
+				};
+				obj.copy({
+					a: 1,
+					c: 3,
+					b: 2,
+					e: void 0
+				}, to).should.eql({
+					d: 5,
+					c: 3,
+					f: void 0,
+					a: 1,
+					b: 2
+				});
+				Object.keys(to).should.eql(['d', 'c', 'f', 'a', 'b']);
+			});
+
+			it('should shallow copy properties', function () {
+				var from = {
+					a: {
+						c: 2
+					}
+				},
+					to = {
+						a: {
+							c: 3
+						}
+					};
+				obj.copy(from, to).should.eql(from);
+				to.a.should.equal(from.a);
+			});
+		});
+
+		describe('#add', function () {
+			it('should create new object if "to" is not specified', function () {
+				obj.add({
+					a: 1,
+					c: 3,
+					b: 2
+				}).should.not.equal({
+					a: 1,
+					c: 3,
+					b: 2
+				});
+
+				obj.add({
 					a: 1,
 					c: 3,
 					b: 2
@@ -388,6 +474,170 @@
 					c: 3,
 					b: 2
 				});
+			});
+
+			it('should not overwrite existing values', function () {
+				var to = {
+					d: 5,
+					c: 4
+				};
+				obj.add({
+					a: 1,
+					c: 3,
+					b: 2
+				}, to).should.eql({
+					d: 5,
+					c: 4,
+					a: 1,
+					b: 2
+				});
+				Object.keys(to).should.eql(['d', 'c', 'a', 'b']);
+			});
+
+			it('should not remove any existing keys', function () {
+				var to = {
+					d: 5,
+					c: 4,
+					f: void 0
+				};
+				obj.add({
+					a: 1,
+					c: 3,
+					b: 2
+				}, to).should.eql({
+					d: 5,
+					c: 4,
+					f: void 0,
+					a: 1,
+					b: 2
+				});
+				Object.keys(to).should.eql(['d', 'c', 'f', 'a', 'b']);
+			});
+
+			it('should not add any undefined values', function () {
+				var to = {
+					d: 5,
+					c: 4,
+					f: void 0
+				};
+				obj.add({
+					a: 1,
+					c: 3,
+					b: 2,
+					e: void 0
+				}, to).should.eql({
+					d: 5,
+					c: 4,
+					f: void 0,
+					a: 1,
+					b: 2
+				});
+				Object.keys(to).should.eql(['d', 'c', 'f', 'a', 'b']);
+			});
+
+			it('should shallow copy properties', function () {
+				var from = {
+					a: {
+						c: 2
+					}
+				},
+					to = {};
+				obj.add(from, to).should.eql(from);
+				to.a.should.equal(from.a);
+			});
+		});
+
+		describe('#copyR', function () {
+			it('should create new object if "to" is not specified', function () {
+				obj.copyR({
+					a: 1,
+					c: 3,
+					b: 2
+				}).should.not.equal({
+					a: 1,
+					c: 3,
+					b: 2
+				});
+
+				obj.copyR({
+					a: 1,
+					c: 3,
+					b: 2
+				}).should.eql({
+					a: 1,
+					c: 3,
+					b: 2
+				});
+			});
+
+			it('should overwrite existing values while keeping the key order', function () {
+				var to = {
+					d: 5,
+					c: 4
+				};
+				obj.copyR({
+					a: 1,
+					c: 3,
+					b: 2
+				}, to).should.eql({
+					d: 5,
+					c: 3,
+					a: 1,
+					b: 2
+				});
+				Object.keys(to).should.eql(['d', 'c', 'a', 'b']);
+			});
+
+			it('should not remove any existing keys', function () {
+				var to = {
+					d: 5,
+					c: 4,
+					f: void 0
+				};
+				obj.copyR({
+					a: 1,
+					c: 3,
+					b: 2
+				}, to).should.eql({
+					d: 5,
+					c: 3,
+					f: void 0,
+					a: 1,
+					b: 2
+				});
+				Object.keys(to).should.eql(['d', 'c', 'f', 'a', 'b']);
+			});
+
+			it('should not copy any undefined values', function () {
+				var to = {
+					d: 5,
+					c: 4,
+					f: void 0
+				};
+				obj.copyR({
+					a: 1,
+					c: 3,
+					b: 2,
+					e: void 0
+				}, to).should.eql({
+					d: 5,
+					c: 3,
+					f: void 0,
+					a: 1,
+					b: 2
+				});
+				Object.keys(to).should.eql(['d', 'c', 'f', 'a', 'b']);
+			});
+
+			it('should deep copy properties', function () {
+				var from = {
+					a: {
+						c: 2
+					}
+				},
+					to = {};
+				obj.add(from, to).should.eql(from);
+				to.a.should.not.equal(from.a);
 			});
 		});
 

@@ -16,7 +16,7 @@
 	"noempty": true,
 	"nonew": true,
 	"plusplus": false,
-	"quotmark": "single",
+	"quotmark": true,
 	"regexp": true,
 	// This option prohibits the use of unsafe . in regular expressions.
 	"undef": true,
