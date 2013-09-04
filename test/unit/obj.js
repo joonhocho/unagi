@@ -63,6 +63,65 @@
 			});
 		});
 
+		describe('#filterKeys', function () {
+			it('should throw error when called on non-object', function () {
+				(function () {
+					obj.filterKeys(void 0);
+				}).should.throwError();
+
+				(function () {
+					obj.filterKeys(null);
+				}).should.throwError();
+
+				(function () {
+					obj.filterKeys(NaN);
+				}).should.throwError();
+
+				(function () {
+					obj.filterKeys(0);
+				}).should.throwError();
+
+				(function () {
+					obj.filterKeys(1);
+				}).should.throwError();
+
+				(function () {
+					obj.filterKeys(false);
+				}).should.throwError();
+
+				(function () {
+					obj.filterKeys(true);
+				}).should.throwError();
+
+				(function () {
+					obj.filterKeys('');
+				}).should.throwError();
+
+				(function () {
+					obj.filterKeys('str');
+				}).should.throwError();
+			});
+
+			it('should return an empty array for empty object/array', function () {
+				obj.filterKeys({}).should.eql([]);
+				obj.filterKeys([]).should.eql([]);
+				obj.filterKeys(new Date()).should.eql([]);
+			});
+
+			it('should return an array of keys for object and an array of indices for array', function () {
+				obj.filterKeys({
+					a: void 0,
+					b: null,
+					c: 0,
+					d: false,
+					e: '',
+					f: NaN
+				}).should.eql(['a', 'b', 'c', 'd', 'e', 'f']);
+
+				obj.filterKeys(['a', 'b', 'c']).should.eql(['0', '1', '2']);
+			});
+		});
+
 		describe('#vals', function () {
 			it('should return an empty array for empty object/array', function () {
 				obj.vals({}).should.eql([]);
